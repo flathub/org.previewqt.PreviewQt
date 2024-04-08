@@ -10,6 +10,7 @@ finish-args:
     - --filesystem=host
     - --device=dri
     - --socket=pulseaudio
+    - --talk-name=org.kde.StatusNotifierWatcher
 modules:
     ########################
     # EXIV2
