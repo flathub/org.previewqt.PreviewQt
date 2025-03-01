@@ -1,10 +1,10 @@
 app-id: org.previewqt.PreviewQt
 runtime: org.kde.Platform
-runtime-version: '6.6'
+runtime-version: '6.8'
 sdk: org.kde.Sdk
 command: previewqt
 base: io.qt.qtwebengine.BaseApp
-base-version: '6.6'
+base-version: '6.8'
 finish-args:
     - --share=ipc
     - --socket=wayland
@@ -15,8 +15,24 @@ finish-args:
     - --talk-name=org.kde.StatusNotifierWatcher
     - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
     - --env=QML_IMPORT_PATH=/app/qml
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    add-ld-path: .
+    version: '24.08'
+    no-autodownload: false
+    autodelete: false
 cleanup-commands:
-    - /app/cleanup-BaseApp.sh
+    - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+cleanup:
+    - /include
+    - /lib/pkgconfig
+    - /lib/cmake
+    - /share/pkgconfig
+    - /share/boost_predef
+    - /share/doc
+    - /share/man
+    - '*.a'
 modules:
     ########################
     # EXIV2
@@ -36,8 +52,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/Exiv2/exiv2
-          tag: v0.28.2
-          commit: 04207b9c39bf7b3b1a7144f7ed4e4f16b4f29ef6
+          commit: 907169fa643c2c74c14fd4106e55eaeee3634d9f
+          tag: v0.28.5
 
     ########################
     # RAW SUPPORT
@@ -49,66 +65,11 @@ modules:
       sources:
         - type: git
           url: https://github.com/LibRaw/LibRaw
-          tag: 0.21.2
-          commit: 1ef70158d7fde1ced6aaddb0b9443c32a7121d3d
+          commit: 261c18ca0f1f9b83a53947b77751050d90d18e67
+          tag: 0.21.3
         - type: shell
           commands:
             - "autoreconf -vfi"
-
-    ########################
-    # HEIF SUPPORT
-    ########################
-    - name: libde265
-      buildsystem: cmake-ninja
-      config-opts:
-        - -DCMAKE_BUILD_TYPE=Release
-      sources:
-        - type: git
-          url: https://github.com/strukturag/libde265
-          tag: v1.0.15
-          commit: 17bb8d9fcea62db8cdeb0fc7ef8d15dbd19a22e4
-    ########################
-    - name: libheif
-      buildsystem: cmake-ninja
-      config-opts:
-        - -DCMAKE_BUILD_TYPE=Release
-        - -DWITH_DAV1D=ON
-        - -DWITH_RAV1E=ON
-      sources:
-        - type: git
-          url: https://github.com/strukturag/libheif
-          tag: v1.17.6
-          commit: 59b58566de0d8e2e9fea958abeba1d3346bda9de
-
-    ########################
-    # AVIF SUPPORT
-    ########################
-    - name: libavif
-      buildsystem: cmake-ninja
-      config-opts:
-        - -DCMAKE_BUILD_TYPE=Release
-        - -DAVIF_CODEC_AOM=ON
-        - -DAVIF_CODEC_DAV1D=ON
-        - -DAVIF_CODEC_AOM=ON
-      sources:
-        - type: git
-          url: https://github.com/AOMediaCodec/libavif
-          tag: v1.0.4
-          commit: d77cfece0b3e233ee4bed49dfef1e7dc451599f8
-
-    ########################
-    # JXL SUPPORT
-    ########################
-    - name: libjxl
-      buildsystem: cmake-ninja
-      config-opts:
-        - -DCMAKE_BUILD_TYPE=Release
-        - -DBUILD_TESTING=OFF
-      sources:
-        - type: git
-          url: https://github.com/libjxl/libjxl
-          tag: v0.10.2
-          commit: e1489592a770b989303b0edc5cc1dc447bbe0515
 
     ########################
     # EXR SUPPORT
@@ -120,8 +81,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/ebiggers/libdeflate
-          tag: v1.20
-          commit: 275aa5141db6eda3587214e0f1d3a134768f557d
+          commit: 78051988f96dc8d8916310d8b24021f01bd9e102
+          tag: v1.23
     ########################
     - name: imath
       buildsystem: cmake-ninja
@@ -130,8 +91,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/AcademySoftwareFoundation/Imath
-          tag: v3.1.11
-          commit: 5ac1d5335cb34f0f356c5f2461a57c845b96b115
+          commit: c0396a055a01bc537d32f435aee11a9b7ed6f0b5
+          tag: v3.1.12
     ########################
     - name: openexr
       buildsystem: cmake-ninja
@@ -140,8 +101,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/AcademySoftwareFoundation/openexr
-          tag: v3.2.4
-          commit: a1a00ffeecf627bbbc010d40700720bee48b2af7
+          commit: 55d1a1404cec5b4b187009d9f7fe55a5622ac4e5
+          tag: v3.3.2
 
     ########################
     # POPPLER DOCUMENTS
@@ -154,18 +115,20 @@ modules:
       sources:
         - type: git
           url: https://gitlab.freedesktop.org/poppler/poppler-data
-          tag: POPPLER_DATA_0_4_12
           commit: af9f452b427d5ce8abe81ff98cc40c5f39fad90b
+          tag: POPPLER_DATA_0_4_12
     ########################
     - name: boost
       buildsystem: simple
+      cleanup:
+        - "libboost*.so*"
       build-commands:
-        - ./bootstrap.sh
-        - ./b2 install --prefix="$FLATPAK_DEST"
+        - ./bootstrap.sh --with-libraries=container
+        - ./b2 install variant=release link=shared runtime-link=shared --prefix="$FLATPAK_DEST" -j $FLATPAK_BUILDER_N_JOBS
       sources:
         - type: archive
-          url: https://archives.boost.io/release/1.85.0/source/boost_1_85_0.tar.gz
-          sha256: be0d91732d5b0cc6fbb275c7939974457e79b54d6f07ce2e3dfdd68bef883b0b
+          url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz
+          sha256: f55c340aa49763b1925ccf02b2e83f35fdcf634c9d5164a2acb87540173c741d
     ########################
     - name: poppler
       buildsystem: cmake-ninja
@@ -184,8 +147,8 @@ modules:
       sources:
         - type: git
           url: https://gitlab.freedesktop.org/poppler/poppler
-          tag: poppler-24.05.0
-          commit: 14191296ae72398638d2a4af67d783ee120a998c
+          commit: 71fea5bed8a4c047c2063245ba1c5560b071ee25
+          tag: poppler-25.02.0
 
     ########################
     # KDE IMAGE FORMATS
@@ -198,8 +161,8 @@ modules:
       sources:
         - type: git
           url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-          tag: v6.2.0
-          commit: 30f066c5f0295239b0b335a62c0c97e979313a7e
+          commit: 7dd28cc56c339c3f8fb356f7c53c0e8f61433d81
+          tag: v6.10.0
     ########################
     - name: kimageformats
       buildsystem: cmake-ninja
@@ -212,8 +175,8 @@ modules:
       sources:
         - type: git
           url: https://invent.kde.org/frameworks/kimageformats.git
-          tag: v6.2.0
-          commit: 5b2c190823e0fea896038f5a1ef638df16e7650b
+          commit: f49704b2dfbfa5c5f892475254d114eab88dc833
+          tag: v6.10.0
 
     ########################
     # DEVIL IMAGE LIBRARY
@@ -238,8 +201,8 @@ modules:
         - --disable-static
       sources:
         - type: archive
-          url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10031/ghostpdl-10.03.1.tar.gz
-          sha256: 8ea9dd8768b64576bc4ee2d79611450c9e1edeb686f7824f3bf94b92457b882a
+          url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10040/ghostscript-10.04.0.tar.gz
+          sha256: c764dfbb7b13fc71a7a05c634e014f9bb1fb83b899fe39efc0b6c3522a9998b1
     ########################
     - name: imagemagick
       builddir: true
@@ -270,8 +233,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/ImageMagick/ImageMagick
-          tag: 7.1.1-32 # when changing the version number make sure to update patch file accordingly
-          commit: 178bb329c7b80314711b036bd1c37107df76a6bc
+          commit: a2d96f40e707ba54b57e7d98c3277d3ea6611ace
+          tag: 7.1.1-43
 
     ########################
     ########################
