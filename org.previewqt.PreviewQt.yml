@@ -243,22 +243,22 @@ modules:
       builddir: true
       config-opts:
         - -DCMAKE_BUILD_TYPE=Release
-        - -DIMAGEMAGICK=ON
-        - -DGRAPHICSMAGICK=OFF
-        - -DEXIV2=ON
-        - -DLIBARCHIVE=ON
-        - -DRAW=ON
-        - -DPOPPLER=ON
-        - -DQTPDF=OFF
-        - -DDEVIL=ON
-        - -DFREEIMAGE=OFF
-        - -DLIBVIPS=OFF
-        - -DVIDEO_MPV=OFF
-        - -DEXIV2_ENABLE_BMFF=ON
-        - -DFLATPAKBUILD=ON
-        - -DEPUB=ON
+        - -DWITH_IMAGEMAGICK=ON
+        - -DWITH_GRAPHICSMAGICK=OFF
+        - -DWITH_EXIV2=ON
+        - -DWITH_LIBARCHIVE=ON
+        - -DWITH_LIBRAW=ON
+        - -DWITH_POPPLER=ON
+        - -DWITH_QTPDF=OFF
+        - -DWITH_DEVIL=ON
+        - -DWITH_FREEIMAGE=OFF
+        - -DWITH_LIBVIPS=OFF
+        - -DWITH_VIDEO_MPV=OFF
+        - -DWITH_EXIV2_ENABLE_BMFF=ON
+        - -DWITH_FLATPAKBUILD=ON
+        - -DWITH_EPUB=ON
       sources:
         - type: git
           url: https://gitlab.com/lspies/previewqt.git
-          tag: v3.0
-          commit: 1dda599c7aa7fdc3457ac07a6f937c3c6dc168f6
+          tag: v4.0
+          commit: 0e4eb21bacbef068e2472a71bf17baea5e4a7c12
