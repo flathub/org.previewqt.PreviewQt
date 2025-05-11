@@ -13,7 +13,7 @@ finish-args:
     - --device=dri
     - --socket=pulseaudio
     - --talk-name=org.kde.StatusNotifierWatcher
-    - --socker=session-bus
+    - --socket=session-bus
     - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
     - --env=QML_IMPORT_PATH=/app/qml
 add-extensions:
