@@ -1,5 +1,7 @@
---- org.previewqt.PreviewQt.metainfo.xml.	2025-12-19 17:02:06.883775278 +0100
-+++ org.previewqt.PreviewQt.metainfo.xml	2025-12-19 17:07:43.495506408 +0100
+diff --git a/org.previewqt.PreviewQt.metainfo.xml b/org.previewqt.PreviewQt.metainfo.xml
+index 38abe93..9dc832f 100644
+--- a/org.previewqt.PreviewQt.metainfo.xml
++++ b/org.previewqt.PreviewQt.metainfo.xml
 @@ -107,7 +107,7 @@
      <releases>
          <release version="4.0" date="2025-03-04">
