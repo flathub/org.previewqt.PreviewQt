@@ -201,7 +201,6 @@ modules:
     ########################
     - name: imagemagick
       builddir: true
-      build-options:
       config-opts:
         - --enable-shared
         - --disable-static
