@@ -85,6 +85,17 @@ modules:
           commit: 1e480d11cb98b032a2dece9b9a8730512effc7f6
           tag: v3.2.2
     ########################
+    - name: openjph
+      buildsystem: cmake-ninja
+      config-opts:
+        - -DCMAKE_BUILD_TYPE=Release
+        - -DOJPH_BUILD_EXECUTABLES=OFF
+      sources:
+        - type: git
+          url: https://github.com/aous72/OpenJPH
+          commit: 762528c09981f6e9a4c6863fb15fcb5ce42736e5
+          tag: 0.25.3
+    ########################
     - name: openexr
       buildsystem: cmake-ninja
       config-opts:
