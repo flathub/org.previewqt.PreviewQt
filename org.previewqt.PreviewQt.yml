@@ -183,20 +183,6 @@ modules:
           tag: v6.21.0
 
     ########################
-    # DEVIL IMAGE LIBRARY
-    ########################
-    - name: devil
-      buildsystem: cmake-ninja
-      config-opts:
-        - -DCMAKE_BUILD_TYPE=Release
-      subdir: DevIL
-      builddir: true
-      sources:
-        - type: archive
-          url: https://sourceforge.net/projects/openil/files/DevIL/1.8.0/DevIL-1.8.0.tar.gz
-          sha256: 0075973ee7dd89f0507873e2580ac78336452d29d34a07134b208f44e2feb709
-
-    ########################
     # MAGICK HAPPENS HERE
     ########################
     - name: ghostscript
@@ -255,7 +241,7 @@ modules:
         - -DWITH_LIBRAW=ON
         - -DWITH_POPPLER=ON
         - -DWITH_QTPDF=OFF
-        - -DWITH_DEVIL=ON
+        - -DWITH_DEVIL=OFF
         - -DWITH_FREEIMAGE=OFF
         - -DWITH_LIBVIPS=OFF
         - -DWITH_VIDEO_MPV=OFF
