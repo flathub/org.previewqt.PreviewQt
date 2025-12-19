@@ -256,4 +256,6 @@ modules:
           tag: v4.0
           commit: 0e4eb21bacbef068e2472a71bf17baea5e4a7c12
         - type: patch
-          path: load_selected_file_dolphin.patch
+          path: patches/load_selected_file_dolphin.patch
+        - type: patch
+          path: patches/previewqt-appstream.patch
