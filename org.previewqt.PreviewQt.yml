@@ -58,8 +58,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/LibRaw/LibRaw
-          commit: 9646d776c7c61976080a8f2be67928df0750493e
-          tag: 0.21.4
+          commit: 0b56545a4f828743f28a4345cdfdd4c49f9f9a2a
+          tag: 0.22.0
         - type: shell
           commands:
             - "autoreconf -vfi"
@@ -95,8 +95,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/aous72/OpenJPH
-          commit: 762528c09981f6e9a4c6863fb15fcb5ce42736e5
-          tag: 0.25.3
+          commit: 4d4f4e8b7f00d877d6a615a991b48ad08a640990
+          tag: 0.26.0
     ########################
     - name: openexr
       buildsystem: cmake-ninja
@@ -151,8 +151,8 @@ modules:
       sources:
         - type: git
           url: https://gitlab.freedesktop.org/poppler/poppler
-          commit: 45d43f4685d0596abcecd2587d4b821e8e40879b
-          tag: poppler-25.12.0
+          commit: 30927d02c1fd6dc02aae2e32334bb82315b24cbb
+          tag: poppler-26.02.0
 
     ########################
     # KDE IMAGE FORMATS
@@ -167,8 +167,8 @@ modules:
       sources:
         - type: git
           url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-          commit: f8447eb308c27724be2bcd3a0e8c2f4bd5d9f52f
-          tag: v6.21.0
+          commit: 3f76d71045e935ced4723c12345162f16cc8cb21
+          tag: v6.22.0
     ########################
     - name: kimageformats
       buildsystem: cmake-ninja
@@ -181,8 +181,8 @@ modules:
       sources:
         - type: git
           url: https://invent.kde.org/frameworks/kimageformats.git
-          commit: 237f25fd20b234d6b8c267b1dae6f85c70ba872e
-          tag: v6.21.0
+          commit: 19df8b03a86b24f85c42f1abcef95cb3c0f85c9b
+          tag: v6.22.0
 
     ########################
     # MAGICK HAPPENS HERE
@@ -226,8 +226,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/ImageMagick/ImageMagick
-          commit: 578d60d1bf77be54b16ef2673d507932885570dd
-          tag: 7.1.2-11
+          commit: dd991e286b96918917a3392d6dc3ffc0e6907a4e
+          tag: 7.1.2-13
 
     ########################
     ########################
@@ -253,9 +253,5 @@ modules:
       sources:
         - type: git
           url: https://gitlab.com/lspies/previewqt.git
-          tag: v4.0
-          commit: 0e4eb21bacbef068e2472a71bf17baea5e4a7c12
-        - type: patch
-          path: patches/load_selected_file_dolphin.patch
-        - type: patch
-          path: patches/previewqt-appstream.patch
+          tag: v5.0
+          commit: 1d071e9b0eef6f664d2ff5cc7e23b96feebeaf10
