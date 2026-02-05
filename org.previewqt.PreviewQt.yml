@@ -255,4 +255,4 @@ modules:
         - type: git
           url: https://gitlab.com/lspies/previewqt.git
           tag: v5.0
-          commit: e75d24d74865a2df0f915ee83ae579f1eab188e9
+          commit: 14db09fbe50ebcd3393324f492808c938cfdeb92
