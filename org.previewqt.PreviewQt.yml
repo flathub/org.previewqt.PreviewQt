@@ -46,8 +46,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/Exiv2/exiv2
-          commit: afcb7a8ba84a7de36d2f1ee7689394e078697956
-          tag: v0.28.7
+          commit: b0859fc61fea5dedfc898aece6b15893ddf4314e
+          tag: v0.28.9
 
     ########################
     # RAW SUPPORT
@@ -59,8 +59,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/LibRaw/LibRaw
-          commit: 0b56545a4f828743f28a4345cdfdd4c49f9f9a2a
-          tag: 0.22.0
+          commit: b93f6e45c194f5df9b02a43b1af9a54b4f41f33f
+          tag: 0.22.2
         - type: shell
           commands:
             - "autoreconf -vfi"
@@ -75,8 +75,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/ebiggers/libdeflate
-          commit: c8c56a20f8f621e6a966b716b31f1dedab6a41e3
-          tag: v1.25
+          commit: 92e6a0db9fa848d742f9eb286c92afc60f2c3dda
+          tag: v1.26
     ########################
     - name: imath
       buildsystem: cmake-ninja
@@ -85,8 +85,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/AcademySoftwareFoundation/Imath
-          commit: 1e480d11cb98b032a2dece9b9a8730512effc7f6
-          tag: v3.2.2
+          commit: 5f27ba266d3ea1565e912570c30b5eafc89959f1
+          tag: v3.2.3
     ########################
     - name: openjph
       buildsystem: cmake-ninja
@@ -96,8 +96,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/aous72/OpenJPH
-          commit: 4d4f4e8b7f00d877d6a615a991b48ad08a640990
-          tag: 0.26.0
+          commit: c68064d0e4cad8e96bab9a068f6cc4e7799744fc
+          tag: 0.31.0
     ########################
     - name: openexr
       buildsystem: cmake-ninja
@@ -106,8 +106,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/AcademySoftwareFoundation/openexr
-          commit: 741ecb82ccdb291ce5b04713fc6c03208753575e
-          tag: v3.4.4
+          commit: e71cdd5d30a146dcb56c5e4c576d9e9d3c45f4fb
+          tag: v3.4.15
 
     ########################
     # POPPLER DOCUMENTS
@@ -132,8 +132,8 @@ modules:
         - ./b2 install variant=release link=shared runtime-link=shared --prefix="$FLATPAK_DEST" -j $FLATPAK_BUILDER_N_JOBS
       sources:
         - type: archive
-          url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.gz
-          sha256: 5e93d582aff26868d581a52ae78c7d8edf3f3064742c6e77901a1f18a437eea9
+          url: https://archives.boost.io/release/1.92.0/source/boost_1_92_0.tar.gz
+          sha256: c4a3b310ddd2472416e091067166b0713be97c63f38c212c484ada022fd296ce
     ########################
     - name: poppler
       buildsystem: cmake-ninja
@@ -152,8 +152,8 @@ modules:
       sources:
         - type: git
           url: https://gitlab.freedesktop.org/poppler/poppler
-          commit: 30927d02c1fd6dc02aae2e32334bb82315b24cbb
-          tag: poppler-26.02.0
+          commit: d663f8fe0237073fadf43e4e19acc46b3ba3e80a
+          tag: poppler-26.08.0
 
     ########################
     # KDE IMAGE FORMATS
@@ -168,8 +168,8 @@ modules:
       sources:
         - type: git
           url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-          commit: 3f76d71045e935ced4723c12345162f16cc8cb21
-          tag: v6.22.0
+          commit: 68483132b87f4d7b953aec94ef51d1234d41f937
+          tag: v6.30.0
     ########################
     - name: kimageformats
       buildsystem: cmake-ninja
@@ -182,8 +182,8 @@ modules:
       sources:
         - type: git
           url: https://invent.kde.org/frameworks/kimageformats.git
-          commit: 19df8b03a86b24f85c42f1abcef95cb3c0f85c9b
-          tag: v6.22.0
+          commit: 5d6dfb9012bedd7e86ebba271fa87388658147ea
+          tag: v6.30.0
 
     ########################
     # MAGICK HAPPENS HERE
@@ -196,8 +196,8 @@ modules:
         - --disable-static
       sources:
         - type: archive
-          url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10060/ghostscript-10.06.0.tar.gz
-          sha256: 5bd6da34794928cc7e616f288e32bd0be7f9a5ca2d3c206a0af2c19a4e3a318f
+          url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10080/ghostscript-10.08.0.tar.gz
+          sha256: caf199e3f233f1290b27d0972d636f66c303355f2353309b7bfddf1edda06b3d
     ########################
     - name: imagemagick
       builddir: true
@@ -227,8 +227,77 @@ modules:
       sources:
         - type: git
           url: https://github.com/ImageMagick/ImageMagick
-          commit: dd991e286b96918917a3392d6dc3ffc0e6907a4e
-          tag: 7.1.2-13
+          commit: fb965f1b54a65ddb633f8c2eac4452c782c66d7f
+          tag: 7.1.2-31
+
+    ##########################################################################
+    ##########################################################################
+    # CURRENTLY NOT FUNCTION
+
+    ########################
+    # LIBAPPIMAGES
+    ########################
+    # - name: libfuse
+    #   buildsystem: autotools
+    #   config-opts:
+    #     - --disable-static
+    #     - --enable-lib
+    #     - --disable-util
+    #     - --disable-example
+    #   sources:
+    #     - type: archive
+    #       url: https://github.com/libfuse/libfuse/releases/download/fuse-2.9.7/fuse-2.9.7.tar.gz
+    #       sha256: 832432d1ad4f833c20e13b57cf40ce5277a9d33e483205fc63c78111b3358874
+    # ########################
+    # - name: gc
+    #   buildsystem: cmake
+    #   config-opts:
+    #     - -DBUILD_TESTING=OFF
+    #   sources:
+    #     - type: archive
+    #       url: https://www.hboehm.info/gc/gc_source/gc-8.2.8.tar.gz
+    #       sha256: 7649020621cb26325e1fb5c8742590d92fb48ce5c259b502faf7d9fb5dabb160
+    # ########################
+    # - name: w3m
+    #   buildsystem: autotools
+    #   sources:
+    #     - type: git
+    #       url: https://github.com/tats/w3m
+    #       tag: v0.5.3+git20210102+deb11u1
+    #       sha256: a40aa8e6387c9a7ee8013dd968298c26728c4966
+    # ########################
+    # - name: xmlto
+    #   buildsystem: autotools
+    #   sources:
+    #     - type: git
+    #       url: https://codeberg.org/xmlto/xmlto
+    #       tag: 0.0.29
+    #       commit: 635dcd5bc84a7b67a3a2050a179d96e1d3050b15
+    #     - type: shell
+    #       commands:
+    #         - "autoreconf -vfi"
+    # ########################
+    # - name: xdg-utils
+    #   buildsystem: autotools
+    #   sources:
+    #     - type: archive
+    #       url: https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/v1.2.1/xdg-utils-v1.2.1.tar.gz
+    #       sha256: f6b648c064464c2636884c05746e80428110a576f8daacf46ef2e554dcfdae75
+    # ########################
+    # - name: libappimage
+    #   buildsystem: cmake
+    #   builddir: true
+    #   config-opts:
+    #     - -DBUILD_TESTING=OFF
+    #     - -DCMAKE_BUILD_TYPE=Release
+    #     - -DUSE_SYSTEM_XDGUTILS=ON
+    #   sources:
+    #     - type: git
+    #       url: https://github.com/AppImageCommunity/libappimage
+    #       commit: f8f106b42911aea53e3fa1618e9198b1bbd3bfc9
+
+    ##########################################################################
+    ##########################################################################
 
     ########################
     ########################
@@ -245,14 +314,17 @@ modules:
         - -DWITH_POPPLER=ON
         - -DWITH_QTPDF=OFF
         - -DWITH_DEVIL=OFF
-        - -DWITH_FREEIMAGE=OFF
         - -DWITH_LIBVIPS=OFF
         - -DWITH_VIDEO_MPV=OFF
         - -DWITH_EXIV2_ENABLE_BMFF=ON
         - -DWITH_FLATPAKBUILD=ON
         - -DWITH_EPUB=ON
+        - -DWITH_LIBAPPIMAGE=OFF
+        - -DWITH_LIBREOFFICE=ON
+        - -DWITH_LIBREOFFICEKIT=OFF
+        - -DWITH_OPENSLIDE=OFF
       sources:
         - type: git
           url: https://gitlab.com/lspies/previewqt.git
-          tag: v5.0
-          commit: 14db09fbe50ebcd3393324f492808c938cfdeb92
+          tag: v6.0
+          commit: 6bd2f0386b4d032e9b74da8812b93171dc7862e2
