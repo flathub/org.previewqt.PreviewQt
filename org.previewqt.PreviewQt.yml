@@ -240,6 +240,7 @@ modules:
       sources:
         - type: git
           url: https://github.com/AppImageCommunity/libappimage
+          commit: f8f106b42911aea53e3fa1618e9198b1bbd3bfc9
 
 
     ########################
