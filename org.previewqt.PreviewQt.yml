@@ -230,19 +230,74 @@ modules:
           commit: fb965f1b54a65ddb633f8c2eac4452c782c66d7f
           tag: 7.1.2-31
 
-    ########################
-    ########################
-    - name: libappimage
-      buildsystem: cmake-ninja
-      builddir: true
-      config-opts:
-        - -DBUILD_TESTING=OFF
-        - -DCMAKE_BUILD_TYPE=Release
-      sources:
-        - type: git
-          url: https://github.com/AppImageCommunity/libappimage
-          commit: f8f106b42911aea53e3fa1618e9198b1bbd3bfc9
+    ##########################################################################
+    ##########################################################################
+    # CURRENTLY NOT FUNCTION
 
+    ########################
+    # LIBAPPIMAGES
+    ########################
+    # - name: libfuse
+    #   buildsystem: autotools
+    #   config-opts:
+    #     - --disable-static
+    #     - --enable-lib
+    #     - --disable-util
+    #     - --disable-example
+    #   sources:
+    #     - type: archive
+    #       url: https://github.com/libfuse/libfuse/releases/download/fuse-2.9.7/fuse-2.9.7.tar.gz
+    #       sha256: 832432d1ad4f833c20e13b57cf40ce5277a9d33e483205fc63c78111b3358874
+    # ########################
+    # - name: gc
+    #   buildsystem: cmake
+    #   config-opts:
+    #     - -DBUILD_TESTING=OFF
+    #   sources:
+    #     - type: archive
+    #       url: https://www.hboehm.info/gc/gc_source/gc-8.2.8.tar.gz
+    #       sha256: 7649020621cb26325e1fb5c8742590d92fb48ce5c259b502faf7d9fb5dabb160
+    # ########################
+    # - name: w3m
+    #   buildsystem: autotools
+    #   sources:
+    #     - type: git
+    #       url: https://github.com/tats/w3m
+    #       tag: v0.5.3+git20210102+deb11u1
+    #       sha256: a40aa8e6387c9a7ee8013dd968298c26728c4966
+    # ########################
+    # - name: xmlto
+    #   buildsystem: autotools
+    #   sources:
+    #     - type: git
+    #       url: https://codeberg.org/xmlto/xmlto
+    #       tag: 0.0.29
+    #       commit: 635dcd5bc84a7b67a3a2050a179d96e1d3050b15
+    #     - type: shell
+    #       commands:
+    #         - "autoreconf -vfi"
+    # ########################
+    # - name: xdg-utils
+    #   buildsystem: autotools
+    #   sources:
+    #     - type: archive
+    #       url: https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/v1.2.1/xdg-utils-v1.2.1.tar.gz
+    #       sha256: f6b648c064464c2636884c05746e80428110a576f8daacf46ef2e554dcfdae75
+    # ########################
+    # - name: libappimage
+    #   buildsystem: cmake
+    #   builddir: true
+    #   config-opts:
+    #     - -DBUILD_TESTING=OFF
+    #     - -DCMAKE_BUILD_TYPE=Release
+    #     - -DUSE_SYSTEM_XDGUTILS=ON
+    #   sources:
+    #     - type: git
+    #       url: https://github.com/AppImageCommunity/libappimage
+    #       commit: f8f106b42911aea53e3fa1618e9198b1bbd3bfc9
+
+    ##########################################################################
+    ##########################################################################
 
     ########################
     ########################
@@ -259,15 +314,15 @@ modules:
         - -DWITH_POPPLER=ON
         - -DWITH_QTPDF=OFF
         - -DWITH_DEVIL=OFF
-        - -DWITH_FREEIMAGE=OFF
         - -DWITH_LIBVIPS=OFF
         - -DWITH_VIDEO_MPV=OFF
         - -DWITH_EXIV2_ENABLE_BMFF=ON
         - -DWITH_FLATPAKBUILD=ON
         - -DWITH_EPUB=ON
-        - -DWITH_LIBAPPIMAGE=ON
+        - -DWITH_LIBAPPIMAGE=OFF
         - -DWITH_LIBREOFFICE=ON
         - -DWITH_LIBREOFFICEKIT=OFF
+        - -DWITH_OPENSLIDE=OFF
       sources:
         - type: git
           url: https://gitlab.com/lspies/previewqt.git
